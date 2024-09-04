@@ -18,5 +18,5 @@ public class Todo {
     private LocalDateTime createdDate;
 
     private String task;
-    private boolean completed;
+    private boolean completed = false;
 }
