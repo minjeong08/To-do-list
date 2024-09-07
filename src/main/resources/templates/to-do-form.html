@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<form role="form" action="/new" th:object="${todoForm}"
+      method="post" th:fragment="to-do-form">
+    <div class="form-group">
+        <label th:for="task">해야 할 일</label>
+        <input type="text" th:field="*{task}" class="form-control"
+               placeholder="내용을 입력하세요"
+               th:class="${#fields.hasErrors('task')}? 'form-control
+    fieldError' : 'form-control'">
+        <p th:if="${#fields.hasErrors('task')}"
+           th:errors="*{task}">Incorrect</p>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
