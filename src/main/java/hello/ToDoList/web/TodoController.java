@@ -30,9 +30,12 @@ public class TodoController {
     }
 
     @PostMapping(value = "/new")
-    public String create(@Valid TodoForm form, BindingResult result) {
+    public String create(@Valid TodoForm form, BindingResult result, Model model) {
 
         if (result.hasErrors()) {
+            List<Todo> todos = todoService.findTodos();
+
+            model.addAttribute("todos", todos);
             return "home";
         }
 
