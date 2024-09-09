@@ -12,10 +12,16 @@
         </thead>
         <tbody>
         <tr th:each="todo : ${todos}">
-            <td th:text="${todo.task}"></td>
             <td>
-                <span class="check-input" th:if="${todo.completed}"><input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked></span>
-                <span class="check-input" th:unless="${todo.completed}"><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></span>
+                <a th:text="${todo.task}" th:href="@{/{param}(param=${todo.id})}"></a>
+            </td>
+            <td>
+                <span class="check-input" th:if="${todo.completed}">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                </span>
+                <span class="check-input" th:unless="${todo.completed}">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                </span>
             </td>
         </tr>
         </tbody>
