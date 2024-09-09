@@ -27,4 +27,11 @@ public class TodoService {
     public Todo findOne(Long todoId) {
         return todoRepository.findOne(todoId);
     }
+
+    @Transactional
+    public void updateTask(Long id, String task) {
+
+        Todo todo = todoRepository.findOne(id);
+        todo.setTask(task);
+    }
 }
