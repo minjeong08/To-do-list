@@ -34,4 +34,11 @@ public class TodoService {
         Todo todo = todoRepository.findOne(id);
         todo.setTask(task);
     }
+
+    @Transactional
+    public void updateStatus(Long id) {
+
+        Todo todo = todoRepository.findOne(id);
+        todo.setCompleted(!todo.getCompleted());
+    }
 }
