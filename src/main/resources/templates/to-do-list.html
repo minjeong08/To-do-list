@@ -16,12 +16,11 @@
                 <a th:text="${todo.task}" th:href="@{/{param}(param=${todo.id})}"></a>
             </td>
             <td>
-                <span class="check-input" th:if="${todo.completed}">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                </span>
-                <span class="check-input" th:unless="${todo.completed}">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                </span>
+                <input type="checkbox"
+                       class="form-check-input"
+                       th:checked="${todo.completed}"
+                       th:attr="data-id=${todo.id}"
+                       onchange="updateTaskStatus(this)">
             </td>
         </tr>
         </tbody>

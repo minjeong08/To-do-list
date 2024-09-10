@@ -26,4 +26,33 @@ ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
             margin-left : 0.8rem;
         }
     </style>
+
+    <script>
+        function updateTaskStatus(checkbox) {
+            const todoId = checkbox.getAttribute('data-id');
+            const isCompleted = checkbox.checked;
+
+            fetch(`/api/${todoId}/status`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    completed: isCompleted
+                }),
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Success:', data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
 </head>
