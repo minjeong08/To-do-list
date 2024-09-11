@@ -2,14 +2,14 @@ package hello.ToDoList.api;
 
 import hello.ToDoList.domain.Todo;
 import hello.ToDoList.service.TodoService;
-import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpStatus;
 
 @RestController
 @RequiredArgsConstructor
@@ -18,17 +18,16 @@ public class TodoApiController {
     private final TodoService todoService;
 
     @PostMapping("/api/{id}/status")
-    public UpdateStatusResponse updateStatus(@PathVariable("id") Long id,
-                                             @RequestBody @Valid UpdateStatusRequest request) {
+    public UpdateStatusResponse updateStatus(@PathVariable("id") Long id) {
         todoService.updateStatus(id);
         Todo findTodo = todoService.findOne(id);
         return new UpdateStatusResponse(findTodo.getId(), findTodo.getCompleted());
     }
 
-
-    @Data
-    static class UpdateStatusRequest {
-        private Boolean completed;
+    @PostMapping("/api/{id}/delete")
+    public String deleteTodo(@PathVariable("id") Long id) {
+        todoService.deleteTodo(id);
+        return "데이터가 성공적으로 삭제되었습니다";
     }
 
     @Data
