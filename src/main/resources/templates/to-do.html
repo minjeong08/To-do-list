@@ -1,25 +1,17 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head th:replace="header :: header">
-    <title>Hello</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 
 <body>
 <div class="container">
 
     <form role="form" th:object="${form}" method="post">
-        <div class="form-group">
-            <label th:for="task">해야 할 일</label>
-            <input type="text" th:field="*{task}" class="form-control"
-                   th:class="${#fields.hasErrors('task')}? 'form-control
-    fieldError' : 'form-control'">
-            <p th:if="${#fields.hasErrors('task')}"
-               th:errors="*{task}">Incorrect</p>
-        </div>
-        <button type="submit" class="btn btn-primary">Update</button>
+        <div th:replace="to-do-form :: to-do-form" />
     </form>
+
     <div th:replace="footer :: footer" />
-</div> <!-- /container -->
+</div>
 </body>
 </html>
