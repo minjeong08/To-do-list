@@ -30,4 +30,9 @@ public class TodoRepository {
                 "select t from Todo t", Todo.class)
                 .getResultList();
     }
+
+    public void delete(Long id) {
+        Todo todo = findOne(id);
+        em.remove(todo);
+    }
 }
