@@ -58,6 +58,7 @@ public class TodoController {
         form.setTask(todo.getTask());
 
         model.addAttribute("form", form);
+        model.addAttribute("todoId", id);
         return "to-do";
     }
 
