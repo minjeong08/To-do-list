@@ -10,7 +10,7 @@
     <form role="form" th:object="${form}" method="post">
         <div th:replace="to-do-form :: to-do-form" />
     </form>
-
+    <button type="button" class="btn btn-danger" th:attr="data-id=${todoId}" onclick="deleteTodo(this)">삭제</button>
     <div th:replace="footer :: footer" />
 </div>
 </body>

@@ -30,16 +30,13 @@ ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
     <script>
         function updateTaskStatus(checkbox) {
             const todoId = checkbox.getAttribute('data-id');
-            const isCompleted = checkbox.checked;
 
             fetch(`/api/${todoId}/status`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({
-                    completed: isCompleted
-                }),
+                body: {},
             })
             .then(response => {
                 if (!response.ok) {
@@ -49,6 +46,27 @@ ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
             })
             .then(data => {
                 console.log('Success:', data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        }
+
+        function deleteTodo(button) {
+            const todoId = button.getAttribute('data-id');
+
+            fetch(`/api/${todoId}/delete`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: {},
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                window.location.href = 'http://localhost:8080/'
             })
             .catch((error) => {
                 console.error('Error:', error);
